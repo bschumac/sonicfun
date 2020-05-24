@@ -61,9 +61,10 @@ def reshape_data2D(arr, size_y, size_x):
             
    
     """
+    
     if len(arr)%size_y != 0:
+        print("Shortening array to even number by "+str(len(arr)%size_y)+" measurements!")
         arr = arr[0:len(arr)-len(arr)%size_y]
-        print("Shortening array to even number by "+str(len(arr)%size_x)+" measurements!")
     out_arr = np.swapaxes(np.reshape(arr,(size_y,size_x)),0,1)
     
     return(out_arr)
