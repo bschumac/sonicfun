@@ -17,8 +17,15 @@ from sonic_func import *
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt 
+import os
 
-irg2 = pd.read_csv("/home/benjamin/Met_ParametersTST/GIT_code/sonicfun/example.csv", header=[0,1], na_values='NAN')
+
+wd_path = os.getcwd()
+data_path = os.path.join(wd_path, "data")
+example_file = os.path.join(data_path, "example.csv")
+
+
+irg2 = pd.read_csv(example_file, header=[0,1], na_values='NAN')
 
 #
 #irg2.to_numpy()
@@ -39,6 +46,6 @@ example_pf = pd.DataFrame({'TIMESTAMP': timestamp_pf.flatten(), 'Ux': u1_pf, 'Uy
 example_rot3 = pd.DataFrame({'TIMESTAMP': timestamp_rot3.flatten(), 'Ux': u1_rot3, 'Uy': v1_rot3, 'Uz': w1_rot3})
 
 
-example_pf.to_csv("/home/benjamin/Met_ParametersTST/GIT_code/sonicfun/example_result_planarfit.csv")
+example_pf.to_csv(data_path+"/example_result_planarfit.csv")
 
-example_rot3.to_csv("/home/benjamin/Met_ParametersTST/GIT_code/sonicfun/example_result_triplerotation.csv")
+example_rot3.to_csv(data_path+"/example_result_triplerotation.csv")
