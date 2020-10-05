@@ -133,6 +133,9 @@ def planar_fit(u, v, w, sub_size = 10, **kwargs):
     # Firstly finding the optionally provided timestamp
     
     timestamp = kwargs.get("timestamp")
+    Ts = kwargs.get("Ts")
+    CO2 = kwargs.get("CO2")
+    H2O = kwargs.get("H2O")
     
     if timestamp is None:
         print("No timestamp provided! Creating artificial timestamp...")
@@ -148,6 +151,10 @@ def planar_fit(u, v, w, sub_size = 10, **kwargs):
     
     if len(timestamp)%round_len != 0:
         timestamp = timestamp[0:len(timestamp)-len(timestamp)%round_len]
+        Ts = Ts[0:len(Ts)-len(Ts)%round_len]
+        CO2 = Ts[0:len(CO2)-len(CO2)%round_len]
+        H2O = H2O[0:len(H2O)-len(H2O)%round_len]
+        
     
     
     # reshaping data to optimize calculation
@@ -208,8 +215,20 @@ def planar_fit(u, v, w, sub_size = 10, **kwargs):
     v_fit = np.swapaxes(v_fit,0,1).flatten()
     w_fit = np.swapaxes(w_fit,0,1).flatten()
   
-    
-    return(timestamp, u_fit, v_fit, w_fit)
+    if 'Ts' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, Ts)
+    elif 'CO2' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, CO2)
+    elif 'H2O' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, H2O)
+    elif 'Ts' in locals() and 'CO2' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, Ts, CO2)
+    elif 'Ts' in locals() and 'H2O' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, Ts, H2O)
+    elif 'Ts' in locals() and 'H2O' in locals() and 'CO2' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, Ts, CO2, H2O)    
+    else:
+        return(timestamp, u_fit, v_fit, w_fit)
 
 
 
@@ -252,6 +271,9 @@ def triple_rot (u, v, w, sub_size = 10, **kwargs):
     # Firstly finding the optionally provided timestamp
     
     timestamp = kwargs.get("timestamp")
+    Ts = kwargs.get("Ts")
+    CO2 = kwargs.get("CO2")
+    H2O = kwargs.get("H2O")
     
     if timestamp is None:
         print("No timestamp provided! Creating artificial timestamp...")
@@ -267,6 +289,9 @@ def triple_rot (u, v, w, sub_size = 10, **kwargs):
     
     if len(timestamp)%round_len != 0:
         timestamp = timestamp[0:len(timestamp)-len(timestamp)%round_len]
+        Ts = Ts[0:len(Ts)-len(Ts)%round_len]
+        CO2 = Ts[0:len(CO2)-len(CO2)%round_len]
+        H2O = H2O[0:len(H2O)-len(H2O)%round_len]
     
     
     # reshaping data to optimize calculation
@@ -317,7 +342,20 @@ def triple_rot (u, v, w, sub_size = 10, **kwargs):
     
     
     
-    return(timestamp, u_fit, v_fit, w_fit)
+    if 'Ts' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, Ts)
+    elif 'CO2' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, CO2)
+    elif 'H2O' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, H2O)
+    elif 'Ts' in locals() and 'CO2' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, Ts, CO2)
+    elif 'Ts' in locals() and 'H2O' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, Ts, H2O)
+    elif 'Ts' in locals() and 'H2O' in locals() and 'CO2' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, Ts, CO2, H2O)    
+    else:
+        return(timestamp, u_fit, v_fit, w_fit)
         
     
 
