@@ -214,19 +214,23 @@ def planar_fit(u, v, w, sub_size = 10, **kwargs):
     u_fit = np.swapaxes(u_fit,0,1).flatten()
     v_fit = np.swapaxes(v_fit,0,1).flatten()
     w_fit = np.swapaxes(w_fit,0,1).flatten()
-  
-    if 'Ts' in locals():
+    
+    
+    if 'Ts' in locals() and 'H2O' in locals() and 'CO2' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, Ts, CO2, H2O)
+    elif 'Ts' in locals() and 'H2O' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, Ts, H2O)
+    elif 'Ts' in locals() and 'CO2' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, Ts, CO2)
+    elif 'H2O' in locals() and 'CO2' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, H2O, CO2)
+    elif 'Ts' in locals():
         return(timestamp, u_fit, v_fit, w_fit, Ts)
     elif 'CO2' in locals():
         return(timestamp, u_fit, v_fit, w_fit, CO2)
     elif 'H2O' in locals():
         return(timestamp, u_fit, v_fit, w_fit, H2O)
-    elif 'Ts' in locals() and 'CO2' in locals():
-        return(timestamp, u_fit, v_fit, w_fit, Ts, CO2)
-    elif 'Ts' in locals() and 'H2O' in locals():
-        return(timestamp, u_fit, v_fit, w_fit, Ts, H2O)
-    elif 'Ts' in locals() and 'H2O' in locals() and 'CO2' in locals():
-        return(timestamp, u_fit, v_fit, w_fit, Ts, CO2, H2O)    
+
     else:
         return(timestamp, u_fit, v_fit, w_fit)
 
@@ -342,18 +346,21 @@ def triple_rot (u, v, w, sub_size = 10, **kwargs):
     
     
     
-    if 'Ts' in locals():
+    if 'Ts' in locals() and 'H2O' in locals() and 'CO2' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, Ts, CO2, H2O)
+    elif 'Ts' in locals() and 'H2O' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, Ts, H2O)
+    elif 'Ts' in locals() and 'CO2' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, Ts, CO2)
+    elif 'H2O' in locals() and 'CO2' in locals():
+        return(timestamp, u_fit, v_fit, w_fit, H2O, CO2)
+    elif 'Ts' in locals():
         return(timestamp, u_fit, v_fit, w_fit, Ts)
     elif 'CO2' in locals():
         return(timestamp, u_fit, v_fit, w_fit, CO2)
     elif 'H2O' in locals():
         return(timestamp, u_fit, v_fit, w_fit, H2O)
-    elif 'Ts' in locals() and 'CO2' in locals():
-        return(timestamp, u_fit, v_fit, w_fit, Ts, CO2)
-    elif 'Ts' in locals() and 'H2O' in locals():
-        return(timestamp, u_fit, v_fit, w_fit, Ts, H2O)
-    elif 'Ts' in locals() and 'H2O' in locals() and 'CO2' in locals():
-        return(timestamp, u_fit, v_fit, w_fit, Ts, CO2, H2O)    
+
     else:
         return(timestamp, u_fit, v_fit, w_fit)
         
