@@ -5,16 +5,14 @@ Python package dealing with sonic anemometer data. Tilt correction, friction vel
 * numpy
 * pandas
 * os
-* copy
 
 # Getting Started
 Use the example.py file to learn how the package works.
 
-## Current version: 0.2
+## Current version: 0.1 
 
-Supports 3 major functionalities:
+Supports 2 major functionalities:
 
-* Simple outlier removal
 * Tilt correction using a Planar fit
 * Tilt correction using a triple rotation algorithm
 
